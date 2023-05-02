@@ -34,6 +34,18 @@ const NavBar = () => {
               </li>
               <li>
                 <NavLink
+                  to="/recipes"
+                  aria-label="recipes"
+                  title="Recipes"
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                >
+                  Recipes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
                   to="/Blog"
                   aria-label="Blog"
                   title="Blog"
@@ -115,6 +127,18 @@ const NavBar = () => {
                         >
                           Home
                         </Link>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/recipes"
+                          aria-label="recipes"
+                          title="Recipes"
+                          className={({ isActive }) =>
+                            isActive ? "active" : "default"
+                          }
+                        >
+                          Recipes
+                        </NavLink>
                       </li>
                       <li>
                         <Link

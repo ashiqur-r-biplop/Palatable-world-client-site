@@ -19,6 +19,7 @@ const Chef = () => {
   const handleShowLess = () => {
     setSixChefData(lessChef);
   };
+
   return (
     <div>
       <div className="grid-layout mx-auto">
@@ -32,9 +33,18 @@ const Chef = () => {
             </figure>
             <div className="card-body">
               <h2 className="card-title text-2xl">{chef?.chefName}</h2>
-              <p><span className="font-semibold">recipes quantity :</span> {chef?.recipes_quantity}</p>
-              <p><span className="font-semibold">Total like :</span> {chef?.total_like}</p>
-              <p><span className="font-semibold">Years of experience :</span> {chef?.years_of_experience}</p>
+              <p>
+                <span className="font-semibold">recipes quantity :</span>{" "}
+                {chef?.recipes_quantity}
+              </p>
+              <p>
+                <span className="font-semibold">Total like :</span>{" "}
+                {chef?.total_like}
+              </p>
+              <p>
+                <span className="font-semibold">Years of experience :</span>{" "}
+                {chef?.years_of_experience}
+              </p>
               <div className="card-actions justify-start">
                 <button className="btn-primary bottom-0">View Recipes</button>
               </div>

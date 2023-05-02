@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Chef = () => {
   const [sixChefData, setSixChefData] = useState([]);
   const [fullChefData, setFullChefData] = useState([]);
   const [lessChef, setLessChef] = useState([]);
+  const navigate = useNavigate()
   useEffect(() => {
     fetch("https://palatable-world-client-site-ashiqur23.vercel.app/chef/all")
       .then((res) => res.json())
@@ -20,6 +22,10 @@ const Chef = () => {
     setSixChefData(lessChef);
   };
 
+  const handleVewRecipe= (id) =>{
+    navigate(`/recipe/${id}`)
+  }
+
   return (
     <div>
       <div className="grid-layout mx-auto">
@@ -34,7 +40,7 @@ const Chef = () => {
             <div className="card-body">
               <h2 className="card-title text-2xl">{chef?.chefName}</h2>
               <p>
-                <span className="font-semibold">recipes quantity :</span>{" "}
+                <span className="font-semibold">Recipes quantity :</span>{" "}
                 {chef?.recipes_quantity}
               </p>
               <p>
@@ -46,7 +52,12 @@ const Chef = () => {
                 {chef?.years_of_experience}
               </p>
               <div className="card-actions justify-start">
-                <button className="btn-primary bottom-0">View Recipes</button>
+                <button
+                  onClick={()=>handleVewRecipe(chef?.id)}
+                  className="btn-primary bottom-0"
+                >
+                  View Recipes
+                </button>
               </div>
             </div>
           </div>

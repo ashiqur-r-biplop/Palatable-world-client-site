@@ -36,7 +36,7 @@ const Home = () => {
             <img style={{ width: "100%" }} src={header} alt="" />
           </div>
         </div>
-        "{/* Our CHef */}"
+        
         <div className="">
           <div className="py-20 text-center">
             <h1 className="section-title ">Our Chef</h1>

@@ -1,3 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&family=Lato:wght@400;700&display=swap');
+*{
+    font-family: 'EB Garamond', serif;
+    ;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.my-container {
+    @apply px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20
+}
+
+.product-container {
+    @apply grid gap-8 mb-8 md:grid-cols-2 lg:grid-cols-3
+}
+
+.btn-primary {
+    @apply font-medium m-0 px-4 py-2 md:px-8 text-white md:py-3  text-lg rounded-xl bg-[#910000] hover:bg-[#910000] hover:scale-105 transition duration-200
+}
+.logo{
+    @apply ml-2 font-bold  text-3xl text-[#910000]
+}
+
+.btn-outlined {
+    @apply font-medium transition duration-200 shadow-md md:mb-0 px-4 py-2 md:px-8 md:py-3 m-2 text-lg rounded-full text-gray-700 hover:bg-[#9873FF] hover:text-[#fff] hover:border-transparent border-2 border-[#9873FF]
+}
+
+.active {
+    @apply font-medium tracking-wide text-[#910000] transition-colors duration-200
+}
+
+.default {
+    @apply font-medium tracking-wide text-[#000] transition-colors duration-200 hover:text-[#910000]
+}
+
+@layer utilities {
+    .title-text {
+        @apply bg-gradient-to-r from-[#843535] to-[#5a5643] bg-clip-text text-transparent font-mono
+    }
+}

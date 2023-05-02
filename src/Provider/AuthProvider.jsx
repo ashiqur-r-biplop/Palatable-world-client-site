@@ -3,7 +3,7 @@ import React, { createContext } from "react";
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  console.log(children);
+  // console.log(children);
   const authInfo = {
     displayName: "auth provider set",
   };

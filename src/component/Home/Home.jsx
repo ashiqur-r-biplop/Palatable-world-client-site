@@ -2,6 +2,7 @@ import React from "react";
 import header from "./../../assets/header.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import Chef from "../Chef/Chef";
 
 const Home = () => {
   return (
@@ -23,15 +24,26 @@ const Home = () => {
                   crispy on the outside.
                 </p>
               </div>
-                <button className="btn-primary ">
-                  BUY NOW
-                  <FontAwesomeIcon className="ms-2" icon={faShoppingCart} />
-                </button>
+              <button className="btn-primary ">
+                BUY NOW
+                <FontAwesomeIcon className="ms-2" icon={faShoppingCart} />
+              </button>
             </div>
           </div>
           <div className="lg:w-1/2">
             <img style={{ width: "100%" }} src={header} alt="" />
           </div>
+        </div>
+        {/* Our CHef */}
+        <div className="">
+          <div className="py-20 text-center">
+            <h1 className="section-title ">Our Chef</h1>
+            <p className="mt-5">
+              A chef's quality can vary depending on their skill level,
+              experience, creativity, and passion for cooking.{" "}
+            </p>
+          </div>
+          <Chef></Chef>
         </div>
       </div>
     </div>

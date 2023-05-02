@@ -5,7 +5,7 @@ const Chef = () => {
   const [sixChefData, setSixChefData] = useState([]);
   const [fullChefData, setFullChefData] = useState([]);
   const [lessChef, setLessChef] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     fetch("https://palatable-world-client-site-ashiqur23.vercel.app/chef/all")
       .then((res) => res.json())
@@ -22,9 +22,9 @@ const Chef = () => {
     setSixChefData(lessChef);
   };
 
-  const handleVewRecipe= (id) =>{
-    navigate(`/recipe/${id}`)
-  }
+  const handleVewRecipe = (id) => {
+    navigate(`/recipe/${id}`);
+  };
 
   return (
     <div>
@@ -37,23 +37,34 @@ const Chef = () => {
             <figure>
               <img src={chef?.chefPhoto} alt="Shoes" />
             </figure>
-            <div className="card-body">
-              <h2 className="card-title text-2xl">{chef?.chefName}</h2>
-              <p>
-                <span className="font-semibold">Recipes quantity :</span>{" "}
-                {chef?.recipes_quantity}
-              </p>
-              <p>
-                <span className="font-semibold">Total like :</span>{" "}
-                {chef?.total_like}
-              </p>
-              <p>
-                <span className="font-semibold">Years of experience :</span>{" "}
-                {chef?.years_of_experience}
-              </p>
+            <div className="card-body relative">
+              <h2
+                className="card-title text-2xl absolute -top-10 shadow-lg"
+                style={{
+                  backgroundColor: "#fff",
+                  padding: "10px 30px",
+                  display: "inline",
+                }}
+              >
+                {chef?.chefName}
+              </h2>
+              <div className="py-3">
+                <p>
+                  <span className="font-semibold">Recipes quantity :</span>{" "}
+                  {chef?.recipes_quantity}
+                </p>
+                <p>
+                  <span className="font-semibold">Total like :</span>{" "}
+                  {chef?.total_like}
+                </p>
+                <p>
+                  <span className="font-semibold">Years of experience :</span>{" "}
+                  {chef?.years_of_experience}
+                </p>
+              </div>
               <div className="card-actions justify-start">
                 <button
-                  onClick={()=>handleVewRecipe(chef?.id)}
+                  onClick={() => handleVewRecipe(chef?.id)}
                   className="btn-primary bottom-0"
                 >
                   View Recipes

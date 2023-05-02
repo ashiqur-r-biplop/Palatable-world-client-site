@@ -27,10 +27,6 @@ const Recipe = () => {
                   <h1 className="text-2xl  font-semibold">
                     {recipe?.recipes_name}
                   </h1>
-                  <FontAwesomeIcon
-                    className="bookmark"
-                    icon={faBookmark}
-                  ></FontAwesomeIcon>{" "}
                 </div>
                 <p>
                   {" "}

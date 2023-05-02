@@ -1,10 +1,16 @@
-import { faBookmark, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import { addToDb } from "./../../fakeDb/fakeDb.js";
+import { AiFillHeart } from "react-icons/ai";
+import "./SingleChefDetail.css";
 
 const SingleChefDetail = () => {
   const [chefSingleData, setChefSingleData] = useState(null);
+  const [dataId, setDataId] = useState([]);
+  const [controlDisable, setControlDisable] = useState(false);
+  const [stored, setStored] = useState(false);
   const chefRecipes = useLoaderData();
   const id = useParams(null);
   useEffect(() => {
@@ -14,6 +20,19 @@ const SingleChefDetail = () => {
       .then((res) => res.json())
       .then((data) => setChefSingleData(data));
   }, []);
+  const handleBookMark = (id) => {
+    // addToDb(id);
+    setDataId([...dataId, id]);
+    const storedId = dataId?.find((d) => d == id);
+    console.log(dataId);
+    if (storedId) {
+      setStored(storedId);
+    } else {
+      alert("Favorite successful");
+      setStored(storedId);
+    }
+  };
+
   return (
     <div className="container mx-auto">
       <div className="my-5">
@@ -50,10 +69,18 @@ const SingleChefDetail = () => {
                         <h1 className="text-2xl  font-semibold">
                           {recipe?.recipes_name}
                         </h1>
-                        <FontAwesomeIcon
-                          className="bookmark"
-                          icon={faBookmark}
-                        ></FontAwesomeIcon>{" "}
+
+                        <button
+                          className="btn btn-black favoriteBtn"
+                          onClick={() => handleBookMark(recipe.id)}
+                          disabled={stored == recipe.id}
+                        >
+                          <AiFillHeart
+                            className={`bookmark ${
+                              controlDisable ? "text-black" : "text-gray"
+                            }`}
+                          ></AiFillHeart>
+                        </button>
                       </div>
                       <p>
                         {" "}

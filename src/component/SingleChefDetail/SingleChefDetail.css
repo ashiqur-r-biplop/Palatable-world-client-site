@@ -1,0 +1,18 @@
+.favoriteBtn {
+    background-color: #910000;
+    color: #fff;
+    border: none
+}
+
+.favoriteBtn:hover {
+    background-color: #910000e0;
+    color: #fff;
+    border: none
+}
+
+.favoriteBtn:disabled {
+    background-color: gray;
+    color: #910000;
+    background-color: lightgray;
+    cursor: not-allowed;
+}

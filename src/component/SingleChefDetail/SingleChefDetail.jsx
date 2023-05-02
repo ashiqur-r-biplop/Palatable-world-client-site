@@ -39,7 +39,7 @@ const SingleChefDetail = () => {
         </div>
         <div className="my-20">
           <div className="py-20">
-            <h1 className="section-title text-center">Our Recipes</h1>
+            <h1 className="section-title text-center py-20">Our Recipes</h1>
 
             <div className="grid-layout">
               {chefRecipes?.map((recipe) => (

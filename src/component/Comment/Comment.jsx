@@ -24,8 +24,8 @@ const Comment = () => {
           activeColor="#910000"
         />
       </div>
-      <div className="flex flex-col justify-start items-start w-full">
-        <div className="allComment-input">
+      <div className="flex mx-auto flex-col justify-start items-start w-full">
+        <div className="allComment-input mx-auto">
           <textarea name="" id="" cols="30" rows="10" placeholder="Your Comment" required></textarea>
           <input type="text" placeholder="Your Name" required />
           <input type="Email" placeholder="Your Email" required />

@@ -32,7 +32,7 @@ const Chef = () => {
         {sixChefData?.map((chef) => (
           <div
             key={chef.id}
-            className="card w-96 mx-auto bg-base-100 shadow-xl"
+            className="card lg:w-96 mx-auto bg-base-100 shadow-xl"
           >
             <figure>
               <img src={chef?.chefPhoto} alt="Shoes" />

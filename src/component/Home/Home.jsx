@@ -3,9 +3,9 @@ import header from "./../../assets/header.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Chef from "../Chef/Chef";
+import Testimonial from "../Testimonial/Testimonial";
 
 const Home = () => {
-  
   return (
     <div className="py-10">
       <div className="container mx-auto">
@@ -46,6 +46,15 @@ const Home = () => {
           </div>
           <Chef></Chef>
         </div>
+        {/* our testimonial  */}
+        <div className="py-20 text-center">
+          <h1 className="section-title ">Our Testimonial</h1>
+          <p className="mt-5">
+            An enim nullam tempor sapien gravida donec enim ipsum porta justo
+            congue purus pretium ligula
+          </p>
+        </div>
+        <Testimonial></Testimonial>
       </div>
     </div>
   );

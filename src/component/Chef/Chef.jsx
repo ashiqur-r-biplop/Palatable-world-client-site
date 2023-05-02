@@ -56,5 +56,4 @@ const Chef = () => {
     </div>
   );
 };
-
 export default Chef;

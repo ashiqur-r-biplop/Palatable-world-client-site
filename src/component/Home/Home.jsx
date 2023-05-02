@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Chef from "../Chef/Chef";
 import Testimonial from "../Testimonial/Testimonial";
+import Comment from "../Comment/Comment";
 
 const Home = () => {
   return (
@@ -47,14 +48,23 @@ const Home = () => {
           <Chef></Chef>
         </div>
         {/* our testimonial  */}
-        <div className="py-20 text-center">
-          <h1 className="section-title ">Our Testimonial</h1>
-          <p className="mt-5">
-            An enim nullam tempor sapien gravida donec enim ipsum porta justo
-            congue purus pretium ligula
-          </p>
+        <div>
+          <div className="py-20 text-center">
+            <h1 className="section-title ">Our Testimonial</h1>
+            <p className="mt-5">
+              An enim nullam tempor sapien gravida donec enim ipsum porta justo
+              congue purus pretium ligula
+            </p>
+          </div>
+          <Testimonial></Testimonial>
         </div>
-        <Testimonial></Testimonial>
+        {/* Leave a reply */}
+        <div>
+          <div className="py-20 text-center">
+            <h1 className="section-title">Our Comment</h1>
+          </div>
+          <Comment></Comment>
+        </div>
       </div>
     </div>
   );

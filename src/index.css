@@ -11,7 +11,7 @@
 
 
 .my-container {
-    @apply px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20
+    @apply sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8
 }
 
 .product-container {
@@ -23,6 +23,9 @@
 }
 .logo{
     @apply ml-2 font-bold  text-3xl text-[#910000]
+}
+.footer{
+    @apply bg-[#974e4e20] py-10
 }
 
 .btn-outlined {

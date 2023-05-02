@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import header from "./../../assets/header.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Chef from "../Chef/Chef";
 
 const Home = () => {
+  
   return (
     <div className="py-10">
       <div className="container mx-auto">
@@ -34,7 +35,7 @@ const Home = () => {
             <img style={{ width: "100%" }} src={header} alt="" />
           </div>
         </div>
-        {/* Our CHef */}
+        "{/* Our CHef */}"
         <div className="">
           <div className="py-20 text-center">
             <h1 className="section-title ">Our Chef</h1>

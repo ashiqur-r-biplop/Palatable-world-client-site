@@ -1,11 +1,41 @@
-import React from 'react';
+import React from "react";
+import header from "./../../assets/header.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
-    return (
-        <div>
-            this is home
+  return (
+    <div className="py-10">
+      <div className="container mx-auto">
+        <div className="lg:flex justify-between items-center">
+          <div>
+            <h1 className="logo">CEREALS</h1>
+            <div className="m-2">
+              <div className="my-3">
+                <h5 className="title-text font-semibold">
+                  Easy, soft and crispy chocolate croissants
+                </h5>
+                <p className="lg:w-8/12">
+                  Are you looking for a delicious and easy breakfast treat? Look
+                  no further than chocolate croissants! With just a few
+                  ingredients and some basic kitchen skills, you can make
+                  irresistible chocolate croissants that are soft, buttery, and
+                  crispy on the outside.
+                </p>
+              </div>
+                <button className="btn-primary ">
+                  BUY NOW
+                  <FontAwesomeIcon className="ms-2" icon={faShoppingCart} />
+                </button>
+            </div>
+          </div>
+          <div className="lg:w-1/2">
+            <img style={{ width: "100%" }} src={header} alt="" />
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Home;

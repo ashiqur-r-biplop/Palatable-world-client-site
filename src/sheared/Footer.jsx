@@ -14,7 +14,7 @@ const Footer = () => {
           <button>Subscribe</button>
         </div>
 
-        <div className="flex justify-between w-full">
+        <div className="md:flex justify-between m-3 w-full">
           <div>
             <h4 className="font-semibold">Quick Links</h4>
             <p className="text-gray-400">Home</p>

@@ -5,12 +5,13 @@ import { Link } from "react-router-dom";
 import googleImg from "../../assets/google.png";
 import gitHubImg from "../../assets/github.png";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const Register = () => {
   const [toggleIcon, setToggleIcon] = useState(false);
   const [errorMassage, setErrorMassage] = useState("");
-  const [email,setEmail]= useState("")
-  const { signUp } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const { signUp, signInGoogle, signInGithub } = useContext(AuthContext);
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -18,9 +19,9 @@ const Register = () => {
     const name = form.name.value;
     const photoUrl = form.photoUrl.value;
     const password = form.password.value;
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-        setErrorMassage("Email are not valid")
-        return
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setErrorMassage("Email are not valid");
+      return;
     }
     if (password.length < 6) {
       console.log(password.length);
@@ -42,9 +43,31 @@ const Register = () => {
         });
     }
   };
-  const handleEmail =(e)=>{
+  const handleEmail = (e) => {
     setEmail(e.target.value);
-  }
+  };
+
+  const handleGoogleLogin = () => {
+    const googleProvider = new GoogleAuthProvider();
+    signInGoogle(googleProvider)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((err) => {
+        setErrorMassage(err.message);
+      });
+  };
+  const handleGithubLogin = () => {
+    const githubProvider = new GithubAuthProvider();
+    signInGithub(githubProvider);
+    then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+    }).catch((err) => {
+      setErrorMassage(err.message);
+    });
+  };
   return (
     <div className="container mx-auto">
       <div style={{ margin: "50px 0px" }}>
@@ -115,6 +138,7 @@ const Register = () => {
               <p>Or Sign in with:</p>
               <div className="flex items-center justify-between">
                 <img
+                  onClick={handleGoogleLogin}
                   style={{
                     width: "50px",
                     marginRight: "10px",
@@ -126,6 +150,7 @@ const Register = () => {
                   alt=""
                 />
                 <img
+                  onClick={handleGithubLogin}
                   style={{
                     width: "50px",
                     marginRight: "10px",
@@ -144,5 +169,4 @@ const Register = () => {
     </div>
   );
 };
-
 export default Register;

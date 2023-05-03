@@ -7,7 +7,6 @@ import SingleChefDetail from "../component/SingleChefDetail/SingleChefDetail";
 import Login from "../component/Login/Login";
 import Register from "../component/Login/Register";
 import ErrorPage from "../component/ErrorPage/ErrorPage";
-import PathError from "../component/pathError/PathError";
 
 const router = createBrowserRouter([
   {

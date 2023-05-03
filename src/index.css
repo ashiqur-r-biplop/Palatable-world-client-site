@@ -8,7 +8,7 @@
     width: 100%;
     height: 100%;
   }
-  
+
   .swiper-slide {
     text-align: center;
     font-size: 18px;
@@ -27,12 +27,9 @@
     object-fit: cover;
   }
   
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
 
 .my-container {
     @apply sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8

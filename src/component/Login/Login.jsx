@@ -30,9 +30,9 @@ const Login = () => {
                 placeholder="******"
                 name="password"
               />
-              <div
+              <span
                 onClick={() => setToggleIcon(!toggleIcon)}
-                className="w-full block absolute bottom-4 -right-56 toggle-icon"
+                className=" absolute bottom-3 right-3 toggle-icon"
                 
               >
                 {toggleIcon ? (
@@ -46,7 +46,7 @@ const Login = () => {
                     icon={faEye}
                   ></FontAwesomeIcon>
                 )}
-              </div>
+              </span>
             </div>
             <p className="mb-3 text-end w-full forget-password">
               Forget Password

@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, logout } = useContext(AuthContext);
+  const handleLogout = () => {
+    logout()
+  };
   return (
     <div className="bg-[#974e4e20]">
       <div className="px-4 py-5 mx-auto container ">
@@ -57,11 +62,20 @@ const NavBar = () => {
                 </NavLink>
               </li>
             </ul>
-            <Link to="/login">
-              <button className="btn-primary lg:ms-9 hidden lg:flex">
-                Login
+            {user ? (
+              <button
+                onClick={handleLogout}
+                className="btn-primary lg:ms-9 hidden lg:flex"
+              >
+                logout
               </button>
-            </Link>
+            ) : (
+              <Link to="/login">
+                <button className="btn-primary lg:ms-9 hidden lg:flex">
+                  Login
+                </button>
+              </Link>
+            )}
           </div>
 
           <div className="lg:hidden">

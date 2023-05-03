@@ -1,7 +1,7 @@
 import { faEye, faEyeSlash, faL } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import googleImg from "../../assets/google.png";
 import gitHubImg from "../../assets/github.png";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -11,6 +11,7 @@ const Register = () => {
   const [toggleIcon, setToggleIcon] = useState(false);
   const [errorMassage, setErrorMassage] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate()
   const { signUp, signInGoogle, signInGithub } = useContext(AuthContext);
 
   const handleSignUp = (e) => {
@@ -36,6 +37,7 @@ const Register = () => {
           const loggedUser = result.user;
           console.log(loggedUser);
           setErrorMassage("");
+          navigate('/')
           form.reset();
         })
         .catch((err) => {

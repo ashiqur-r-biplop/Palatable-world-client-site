@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Login.css";
 import googleImg from "../../assets/google.png";
 import gitHubImg from "../../assets/github.png";
@@ -9,10 +9,15 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
+  const { login, signInGoogle, signInGithub } = useContext(AuthContext);
   const [toggleIcon, setToggleIcon] = useState(false);
   const [errorMassage, setErrorMassage] = useState("");
   const [successMassage, setSuccessMassage] = useState("");
-  const { login, signInGoogle, signInGithub } = useContext(AuthContext);
+  const location = useLocation();
+  console.log(location);
+  const navigate = useNavigate()
+  const from = location?.state?.from?.pathname || "/";
+  console.log(from);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -22,6 +27,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate(from)
         setSuccessMassage("login successful");
         setErrorMassage("");
       })

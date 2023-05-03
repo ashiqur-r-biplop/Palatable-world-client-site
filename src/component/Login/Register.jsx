@@ -10,45 +10,50 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 const Register = () => {
   const [toggleIcon, setToggleIcon] = useState(false);
   const [errorMassage, setErrorMassage] = useState("");
-  const [email, setEmail] = useState("");
-  const navigate = useNavigate()
-  const { signUp, signInGoogle, signInGithub } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { signUp, signInGoogle, signInGithub, ProfileUpdate } = useContext(
+    AuthContext
+  );
 
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const photoUrl = form.photoUrl.value;
+    const email = form.email.value;
     const password = form.password.value;
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    signUp(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        setErrorMassage("");
+        ProfileUpdate(name, photoUrl);
+        console.log(loggedUser);
+        navigate("/");
+        form.reset();
+      })
+      .catch((err) => {
+        setErrorMassage(err.message);
+      });
+  };
+  const handleEmail = (e) => {
+    const emailHandle = e.target.value;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailHandle)) {
       setErrorMassage("Email are not valid");
       return;
     }
-    else if (password.length < 6) {
-      console.log(password.length);
+  };
+  const handlePassword = (e) => {
+    const passwordHandle = e.target.value;
+    console.log(passwordHandle);
+    if (passwordHandle.length < 6) {
       setErrorMassage("Minimum six characters provide your password");
       return;
-    }
-    else if (!/^(?=.*[A-Za-z])/.test(password)) {
+    } else if (!/^(?=.*[A-Za-z])/.test(passwordHandle)) {
       setErrorMassage("At least one letter");
     } else {
-      signUp(email, password)
-        .then((result) => {
-          const loggedUser = result.user;
-          console.log(loggedUser);
-          setErrorMassage("");
-          navigate('/')
-          form.reset();
-        })
-        .catch((err) => {
-          setErrorMassage(err.message);
-        });
+      setErrorMassage("");
     }
   };
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
   const handleGoogleLogin = () => {
     const googleProvider = new GoogleAuthProvider();
     signInGoogle(googleProvider)
@@ -56,8 +61,7 @@ const Register = () => {
         const loggedUser = result.user;
         console.log(loggedUser);
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
   };
   const handleGithubLogin = () => {
     const githubProvider = new GithubAuthProvider();
@@ -65,8 +69,7 @@ const Register = () => {
     then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
-    }).catch((err) => {
-    });
+    }).catch((err) => {});
   };
   return (
     <div className="container mx-auto">
@@ -106,6 +109,7 @@ const Register = () => {
                 className="border m-0"
                 placeholder="******"
                 name="password"
+                onChange={handlePassword}
               />
 
               <span

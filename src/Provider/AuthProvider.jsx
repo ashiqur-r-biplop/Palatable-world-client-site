@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
@@ -15,16 +16,21 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const signUp = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const signInGoogle = (provider) => {
+    setLoading(true);
     return signInWithPopup(auth, provider);
   };
   const signInGithub = (provider) => {
+    setLoading(true);
     return signInWithPopup(auth, provider);
   };
   const login = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const logout = () => {
@@ -33,12 +39,18 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => {
       unSubscribe();
     };
   }, []);
-
+  const ProfileUpdate = (name, PhotoUrl) => {
+    updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: PhotoUrl,
+    });
+  };
   const authInfo = {
     user,
     signUp,
@@ -46,6 +58,8 @@ const AuthProvider = ({ children }) => {
     signInGithub,
     login,
     logout,
+    loading,
+    ProfileUpdate,
   };
 
   return (

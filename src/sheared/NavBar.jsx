@@ -1,12 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import avatar from "../assets/user.png";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useContext(AuthContext);
+  console.log(user?.photoURL);
   const handleLogout = () => {
-    logout()
+    logout();
   };
   return (
     <div className="bg-[#974e4e20]">
@@ -75,6 +77,27 @@ const NavBar = () => {
                   Login
                 </button>
               </Link>
+            )}
+            {user ? (
+              <img
+                title={`${user?.displayName ? user?.displayName : ""}`}
+                style={{
+                  width: "50px",
+                  height: "px",
+                  borderRadius: "50%",
+                  cursor: "pointer",
+                }}
+                className="md:ms-3"
+                src={user?.photoURL}
+                alt=""
+              />
+            ) : (
+              <img
+                style={{ width: "50px", height: "px" }}
+                className="md:ms-3"
+                src={avatar}
+                alt=""
+              />
             )}
           </div>
 

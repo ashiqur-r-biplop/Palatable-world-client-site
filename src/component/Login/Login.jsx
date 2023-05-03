@@ -42,7 +42,8 @@ const Login = () => {
     signInGoogle(googleProvider)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        // console.log(loggedUser);
+        navigate(from)
       })
       .catch((err) => {});
   };
@@ -51,7 +52,7 @@ const Login = () => {
     signInGithub(githubProvider);
     then((result) => {
       const loggedUser = result.user;
-      console.log(loggedUser);
+      navigate(from)
     }).catch((err) => {});
   };
   return (

@@ -50,6 +50,7 @@ const AuthProvider = ({ children }) => {
       displayName: name,
       photoURL: PhotoUrl,
     });
+    setLoading(true);
   };
   const authInfo = {
     user,

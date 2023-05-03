@@ -5,6 +5,7 @@ import "./index.css";
 import router from "./Routes/route.jsx";
 import AuthProvider from "./Provider/AuthProvider.jsx";
 import 'animate.css';
+import '@smastrom/react-rating/style.css'
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

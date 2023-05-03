@@ -15,9 +15,9 @@ const Login = () => {
   const [successMassage, setSuccessMassage] = useState("");
   const location = useLocation();
   console.log(location);
-  const navigate = useNavigate()
-  const from = location?.state?.from?.pathname || "/";
-  console.log(from);
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -27,9 +27,9 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        navigate(from)
         setSuccessMassage("login successful");
         setErrorMassage("");
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         setSuccessMassage("");
@@ -43,17 +43,19 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         // console.log(loggedUser);
-        navigate(from)
+        navigate(from, { replace: true });
       })
       .catch((err) => {});
   };
   const handleGithubLogin = () => {
     const githubProvider = new GithubAuthProvider();
-    signInGithub(githubProvider);
-    then((result) => {
+    signInGithub(githubProvider)
+    .then((result) => {
       const loggedUser = result.user;
-      navigate(from)
-    }).catch((err) => {});
+      navigate(from, { replace: true });
+    }).catch((err) => {
+      console.log(err.message);
+    });
   };
   return (
     <div className="container mx-auto">

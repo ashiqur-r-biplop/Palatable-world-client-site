@@ -1,14 +1,10 @@
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
-import { addToDb } from "./../../fakeDb/fakeDb.js";
+import { useLoaderData, useParams } from "react-router-dom";
 import { AiFillHeart } from "react-icons/ai";
 import "./SingleChefDetail.css";
-import ErrorPage from "../ErrorPage/ErrorPage.jsx";
 import DataNotFount from "../DataNotFount/DataNotFount.jsx";
 import Swal from "sweetalert2";
-
+import { Rating, Star } from "@smastrom/react-rating";
 const SingleChefDetail = () => {
   const [chefSingleData, setChefSingleData] = useState(null);
   const [dataId, setDataId] = useState([]);
@@ -26,19 +22,23 @@ const SingleChefDetail = () => {
   const handleBookMark = (id) => {
     setDataId([...dataId, id]);
     Swal.fire({
-      title: 'Favorite Successful',
+      title: "Favorite Successful",
       showClass: {
-        popup: 'animate__animated animate__fadeInDown'
+        popup: "animate__animated animate__fadeInDown",
       },
       hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-      }
-    })
+        popup: "animate__animated animate__fadeOutUp",
+      },
+    });
+  };
+  const myStyles = {
+    itemShapes: Star,
+    activeFillColor: "#910000",
   };
   if (chefRecipes.length === 0) {
-    
     return <DataNotFount></DataNotFount>;
   }
+
   return (
     <div className="container mx-auto">
       <div className="my-5">
@@ -47,7 +47,7 @@ const SingleChefDetail = () => {
             <h1 className="font-bold text-5xl" style={{ color: "#910000" }}>
               {chefSingleData?.chefName}
             </h1>
-            <div className=" text-2xl">
+            <div className="text-2xl">
               <p>Recipes Quantity: {chefSingleData?.recipes_quantity}</p>
               <p>Years Of Experience: {chefSingleData?.years_of_experience}</p>
               <p>Total Likes: {chefSingleData?.total_like}</p>
@@ -62,7 +62,6 @@ const SingleChefDetail = () => {
             />
           </div>
         </div>
-
         <div className="my-20">
           <div className="py-20">
             <h1 className="section-title text-center py-20">Our Recipes</h1>
@@ -98,7 +97,7 @@ const SingleChefDetail = () => {
                           {recipe?.recipes_instructions?.slice(0, 100)}.ETC
                         </span>
                       </p>
-                      <p>
+                      <>
                         <span className="text-xl font-semibold">
                           Recipes Ingredients
                         </span>
@@ -107,12 +106,17 @@ const SingleChefDetail = () => {
                             {r}
                           </li>
                         ))}
-                      </p>
+                      </>
                       <p className="">
                         <span className="text-xl font-semibold">Retting:</span>{" "}
                         <span className="text-xll">
-                          {recipe?.rating}{" "}
-                          <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>{" "}
+                          {recipe?.rating}
+                          <Rating
+                            style={{ maxWidth: 250 }}
+                            value={recipe?.rating}
+                            readOnly
+                            itemStyles={myStyles}
+                          />
                         </span>
                       </p>
                     </div>

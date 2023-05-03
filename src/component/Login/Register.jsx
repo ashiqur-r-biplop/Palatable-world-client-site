@@ -60,6 +60,7 @@ const Register = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate("/")
       })
       .catch((err) => {});
   };
@@ -68,7 +69,7 @@ const Register = () => {
     signInGithub(githubProvider);
     then((result) => {
       const loggedUser = result.user;
-      console.log(loggedUser);
+      navigate("/")
     }).catch((err) => {});
   };
   return (

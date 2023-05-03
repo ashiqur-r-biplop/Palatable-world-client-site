@@ -6,12 +6,11 @@ import { addToDb } from "./../../fakeDb/fakeDb.js";
 import { AiFillHeart } from "react-icons/ai";
 import "./SingleChefDetail.css";
 import ErrorPage from "../ErrorPage/ErrorPage.jsx";
+import DataNotFount from "../DataNotFount/DataNotFount.jsx";
 
 const SingleChefDetail = () => {
   const [chefSingleData, setChefSingleData] = useState(null);
   const [dataId, setDataId] = useState([]);
-  const [controlDisable, setControlDisable] = useState(false);
-  const [stored, setStored] = useState(false);
   const chefRecipes = useLoaderData();
 
   const id = useParams(null);
@@ -24,18 +23,11 @@ const SingleChefDetail = () => {
   }, []);
 
   const handleBookMark = (id) => {
-    // addToDb(id);
     setDataId([...dataId, id]);
-    const storedId = dataId?.find((d) => d == id);
-    console.log(dataId);
-    if (storedId) {
-      setStored(storedId);
-    } else {
-      alert("Favorite successful");
-      setStored(storedId);
-    }
   };
-
+  if (chefRecipes.length === 0) {
+    return <DataNotFount></DataNotFount>;
+  }
   return (
     <div className="container mx-auto">
       <div className="my-5">
@@ -59,6 +51,7 @@ const SingleChefDetail = () => {
             />
           </div>
         </div>
+
         <div className="my-20">
           <div className="py-20">
             <h1 className="section-title text-center py-20">Our Recipes</h1>
@@ -74,15 +67,15 @@ const SingleChefDetail = () => {
                         </h1>
 
                         <button
-                          className="btn btn-black favoriteBtn"
+                          className={`btn btn-black favoriteBtn ${
+                            dataId.includes(recipe.id)
+                              ? "bg-gray-500"
+                              : "bg-[#910000]"
+                          }`}
                           onClick={() => handleBookMark(recipe.id)}
-                          disabled={stored == recipe.id}
+                          disabled={dataId.includes(recipe.id)}
                         >
-                          <AiFillHeart
-                            className={`bookmark ${
-                              controlDisable ? "text-black" : "text-gray"
-                            }`}
-                          ></AiFillHeart>
+                          <AiFillHeart className="bookmark"></AiFillHeart>
                         </button>
                       </div>
                       <p>

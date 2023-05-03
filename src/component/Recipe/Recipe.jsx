@@ -10,7 +10,7 @@ const Recipe = () => {
   console.log(recipes);
   return (
     <div className="container mx-auto">
-      <div className="">
+      <div className="" style={{ backgroundImage: `${headerImg}`, height:"100vh" }}>
         <h1
           style={{ height: "40vh" }}
           className=" border-red-400 text-center font-semibold text-3xl flex justify-center items-center"

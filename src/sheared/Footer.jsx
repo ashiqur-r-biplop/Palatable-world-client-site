@@ -10,7 +10,9 @@ const Footer = () => {
         </h1>
 
         <div className="flex justify-center items-center mx-auto my-2 footerEmail ">
-          <input type="text" placeholder="Your Email" />
+          <div>
+            <input type="text" className="m-0" placeholder="Your Email" />
+          </div>
           <button>Subscribe</button>
         </div>
 

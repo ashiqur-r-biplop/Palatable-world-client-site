@@ -26,19 +26,27 @@ const Comment = () => {
       </div>
       <div className="flex mx-auto flex-col justify-start items-start w-full">
         <div className="allComment-input mx-auto">
-          <textarea name="" id="" cols="30" rows="10" placeholder="Your Comment" required></textarea>
+          <textarea
+            name=""
+            id=""
+            cols="30"
+            rows="10"
+            placeholder="Your Comment"
+            required
+          ></textarea>
           <input type="text" placeholder="Your Name" required />
           <input type="Email" placeholder="Your Email" required />
           <input type="Email" placeholder="Website" required />
-          
         </div>
-        <div className="flex justify-start items-center my-3" >
-            <input type="checkbox" name="" required id="" />
-            <p className="ms-1">
-              Save my name, email and website in this browser for the next time
-              I comment.
-            </p>
+        <div className="flex justify-start items-start my-3">
+          <div>
+            <input type="checkbox" name="" id="" />
           </div>
+          <p className="ms-1">
+            Save my name, email and website in this browser for the next time I
+            comment.
+          </p>
+        </div>
         <button className="btn-primary">Post Comment</button>
       </div>
     </div>

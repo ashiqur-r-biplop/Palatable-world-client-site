@@ -57,9 +57,11 @@ const NavBar = () => {
                 </NavLink>
               </li>
             </ul>
-            <button className="btn-primary lg:ms-9 hidden lg:flex">
-              Login
-            </button>
+            <Link to="/login">
+              <button className="btn-primary lg:ms-9 hidden lg:flex">
+                Login
+              </button>
+            </Link>
           </div>
 
           <div className="lg:hidden">
@@ -151,7 +153,11 @@ const NavBar = () => {
                         </Link>
                       </li>
                       <li>
-                        <button className="btn-primary  lg:flex">Login</button>
+                        <Link to="/login">
+                          <button className="btn-primary  lg:flex">
+                            Login
+                          </button>
+                        </Link>
                       </li>
                     </ul>
                   </nav>

@@ -6,11 +6,14 @@ import Recipe from "../component/Recipe/Recipe";
 import SingleChefDetail from "../component/SingleChefDetail/SingleChefDetail";
 import Login from "../component/Login/Login";
 import Register from "../component/Login/Register";
+import ErrorPage from "../component/ErrorPage/ErrorPage";
+import PathError from "../component/pathError/PathError";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

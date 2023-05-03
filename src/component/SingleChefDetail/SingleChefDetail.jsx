@@ -1,10 +1,11 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { addToDb } from "./../../fakeDb/fakeDb.js";
 import { AiFillHeart } from "react-icons/ai";
 import "./SingleChefDetail.css";
+import ErrorPage from "../ErrorPage/ErrorPage.jsx";
 
 const SingleChefDetail = () => {
   const [chefSingleData, setChefSingleData] = useState(null);
@@ -12,6 +13,7 @@ const SingleChefDetail = () => {
   const [controlDisable, setControlDisable] = useState(false);
   const [stored, setStored] = useState(false);
   const chefRecipes = useLoaderData();
+
   const id = useParams(null);
   useEffect(() => {
     fetch(
@@ -20,6 +22,7 @@ const SingleChefDetail = () => {
       .then((res) => res.json())
       .then((data) => setChefSingleData(data));
   }, []);
+
   const handleBookMark = (id) => {
     // addToDb(id);
     setDataId([...dataId, id]);

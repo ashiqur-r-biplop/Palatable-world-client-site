@@ -13,7 +13,7 @@ const Login = () => {
     <div className="container mx-auto">
       <div style={{ height: "80vh" }}>
         <form className="flex flex-col justify-center items-center h-full">
-          <div className="flex flex-col justify-start items-start fullForm shadow-2xl">
+          <div className="flex flex-col justify-start items-start fullForm lg:w-2/6 md:w-3/6  shadow-2xl">
             <h2 className="text-2xl mb-2" style={{ color: "#910000" }}>
               Please Login
             </h2>
@@ -32,8 +32,7 @@ const Login = () => {
               />
               <span
                 onClick={() => setToggleIcon(!toggleIcon)}
-                className=" absolute bottom-3 right-3 toggle-icon"
-                
+                className="absolute bottom-3 right-3 toggle-icon"
               >
                 {toggleIcon ? (
                   <FontAwesomeIcon
@@ -68,8 +67,8 @@ const Login = () => {
                   style={{
                     width: "50px",
                     marginRight: "10px",
-                    border:"2px solid #910000",
-                    cursor:"pointer",
+                    border: "2px solid #910000",
+                    cursor: "pointer",
                     padding: "10px",
                   }}
                   src={googleImg}
@@ -79,8 +78,8 @@ const Login = () => {
                   style={{
                     width: "50px",
                     marginRight: "10px",
-                    border:"2px solid #910000",
-                    cursor:"pointer",
+                    border: "2px solid #910000",
+                    cursor: "pointer",
                     padding: "10px",
                   }}
                   src={gitHubImg}

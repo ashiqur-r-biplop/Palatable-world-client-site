@@ -14,7 +14,7 @@ const NavBar = () => {
             className="inline-flex items-center"
           >
             <span className="">
-              <h1 className="logo">Palatable world</h1>
+              <h1 className="logo lg:uppercase">Palatable world</h1>
             </span>
           </Link>
 

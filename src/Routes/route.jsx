@@ -7,6 +7,7 @@ import SingleChefDetail from "../component/SingleChefDetail/SingleChefDetail";
 import Login from "../component/Login/Login";
 import Register from "../component/Login/Register";
 import ErrorPage from "../component/ErrorPage/ErrorPage";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/register",
-        element: <Register></Register>
+        element: <Register></Register>,
       },
       {
         path: "/recipes",
@@ -40,7 +41,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/recipe/:id",
-        element: <SingleChefDetail></SingleChefDetail>,
+        element: (
+          <PrivateRoute>
+            <SingleChefDetail></SingleChefDetail>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://palatable-world-client-site-ashiqur23.vercel.app/recipes/${params.id}`

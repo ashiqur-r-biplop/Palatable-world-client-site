@@ -5,15 +5,19 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="container mx-auto">
-        <h1 className="font-bold text-2xl text-center w-full text-black">
+        <h1 className="font-bold text-2xl text-center w-full text-black uppercase text-3xl">
           palatable world
         </h1>
 
-        <div className="flex justify-center items-center mx-auto my-2 footerEmail ">
-          <div>
-            <input type="text" className="m-0" placeholder="Your Email" />
-          </div>
-          <button>Subscribe</button>
+        <div className="flex justify-center items-center mx-auto my-2 lg:w-3/5 footerEmail ">
+          <input
+            type="text"
+            style={{ outline: "none", border: "none" }}
+            className="m-0"
+            placeholder="Your Email"
+          />
+
+          <button className="py-4 uppercase font-semibold px-2 lg:px-20">Subscribe</button>
         </div>
 
         <div className="md:flex justify-between m-3 w-full">

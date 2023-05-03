@@ -1,11 +1,9 @@
-.bookmark{
-    cursor: pointer;
-}
-.hero-img {
-    height: 50vh;
+.error-img{
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.508) ;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: multiply;
 }
+

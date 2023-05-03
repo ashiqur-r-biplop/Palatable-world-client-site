@@ -9,8 +9,8 @@ const Comment = () => {
   };
   return (
     <div className="m-3">
-      <h1>Leave a Reply</h1>
-      <p>You email address will no be publish. Required fields are marked.</p>
+      <h1 className="uppercase text-xl font-bold">Leave a Reply</h1>
+      <p className="text-lg">You email address will no be publish. Required fields are marked.</p>
       <div className="flex items-center">
         <span className="me-2">Retting </span>{" "}
         <ReactStars
@@ -27,6 +27,7 @@ const Comment = () => {
       <div className="flex mx-auto flex-col justify-start items-start w-full">
         <div className="allComment-input mx-auto">
           <textarea
+            style={{ borderRadius: "5px" }}
             name=""
             id=""
             cols="30"
@@ -34,9 +35,24 @@ const Comment = () => {
             placeholder="Your Comment"
             required
           ></textarea>
-          <input type="text" placeholder="Your Name" required />
-          <input type="Email" placeholder="Your Email" required />
-          <input type="Email" placeholder="Website" required />
+          <input
+            style={{ borderRadius: "5px" }}
+            type="text"
+            placeholder="Your Name"
+            required
+          />
+          <input
+            style={{ borderRadius: "5px" }}
+            type="Email"
+            placeholder="Your Email"
+            required
+          />
+          <input
+            style={{ borderRadius: "5px" }}
+            type="Email"
+            placeholder="Website"
+            required
+          />
         </div>
         <div className="flex justify-start items-start my-3">
           <div>

@@ -23,12 +23,12 @@ const Register = () => {
       setErrorMassage("Email are not valid");
       return;
     }
-    if (password.length < 6) {
+    else if (password.length < 6) {
       console.log(password.length);
       setErrorMassage("Minimum six characters provide your password");
       return;
     }
-    if (!/^(?=.*[A-Za-z])/.test(password)) {
+    else if (!/^(?=.*[A-Za-z])/.test(password)) {
       setErrorMassage("At least one letter");
     } else {
       signUp(email, password)
@@ -55,7 +55,6 @@ const Register = () => {
         console.log(loggedUser);
       })
       .catch((err) => {
-        setErrorMassage(err.message);
       });
   };
   const handleGithubLogin = () => {
@@ -65,7 +64,6 @@ const Register = () => {
       const loggedUser = result.user;
       console.log(loggedUser);
     }).catch((err) => {
-      setErrorMassage(err.message);
     });
   };
   return (
@@ -110,7 +108,7 @@ const Register = () => {
 
               <span
                 onClick={() => setToggleIcon(!toggleIcon)}
-                className="absolute bottom-3 right-3 toggle-icon"
+                className="absolute bottom-4 right-4 toggle-icon"
               >
                 {toggleIcon ? (
                   <FontAwesomeIcon

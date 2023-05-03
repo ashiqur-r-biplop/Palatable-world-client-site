@@ -7,6 +7,7 @@ import { AiFillHeart } from "react-icons/ai";
 import "./SingleChefDetail.css";
 import ErrorPage from "../ErrorPage/ErrorPage.jsx";
 import DataNotFount from "../DataNotFount/DataNotFount.jsx";
+import Swal from "sweetalert2";
 
 const SingleChefDetail = () => {
   const [chefSingleData, setChefSingleData] = useState(null);
@@ -24,8 +25,18 @@ const SingleChefDetail = () => {
 
   const handleBookMark = (id) => {
     setDataId([...dataId, id]);
+    Swal.fire({
+      title: 'Favorite Successful',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })
   };
   if (chefRecipes.length === 0) {
+    
     return <DataNotFount></DataNotFount>;
   }
   return (

@@ -1,19 +1,17 @@
 import { FaceFrownIcon } from '@heroicons/react/24/solid'
 import React from 'react'
 import { Link, useRouteError } from 'react-router-dom'
+import './ErrorPage.css'
+
+import errorImage from './../../assets/error_img.png'
 
 const ErrorPage = () => {
   const { error, status } = useRouteError()
   return (
-    <section className='flex items-center h-screen p-16 bg-gray-100 text-gray-900'>
-      <div className='container flex flex-col items-center justify-center px-5 mx-auto my-8'>
-        <FaceFrownIcon className='w-40 h-40 text-[#9873FF]' />
-        <div className='max-w-md text-center'>
-          <h2 className='mb-8 font-extrabold text-9xl text-[#9873FF]'>
-            <span className='sr-only'>Error</span>
-            {status || 404}
-          </h2>
-          <p className='text-2xl font-semibold md:text-3xl text-[#7E90FE] mb-8'>
+    <section className=''>
+      <div className='container'>
+        <div className='text-center error-img' style={{backgroundImage: `url(${errorImage})`}}>
+          <p className='text-2xl font-semibold md:text-3xl text-[#910000] mb-8'>
             {error?.message}
           </p>
           <Link to='/' className='text-title btn-primary'>

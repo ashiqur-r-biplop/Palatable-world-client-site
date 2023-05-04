@@ -33,7 +33,7 @@ const Register = () => {
           const loggedUser = result.user;
           setErrorMassage("");
           ProfileUpdate(name, photoUrl);
-          console.log(loggedUser);
+          // console.log(loggedUser);
           navigate("/");
           form.reset();
         })
@@ -51,7 +51,7 @@ const Register = () => {
   };
   const handlePassword = (e) => {
     const passwordHandle = e.target.value;
-    console.log(passwordHandle);
+    // console.log(passwordHandle);
     if (passwordHandle.length < 6) {
       setErrorMassage("Minimum six characters provide your password");
       return;
@@ -66,7 +66,7 @@ const Register = () => {
     signInGoogle(googleProvider)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        // console.log(loggedUser);
         navigate("/");
       })
       .catch((err) => {});

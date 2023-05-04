@@ -2,12 +2,12 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import headerImg from "./../../assets/header3.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import "./Recipe.css";
 
 const Recipe = () => {
   const recipes = useLoaderData();
-  console.log(recipes);
+  // console.log(recipes);
   return (
     <div>
       <div

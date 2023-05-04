@@ -33,7 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/recipes",
-        element: <Recipe></Recipe>,
+        element: (
+          <PrivateRoute>
+            <Recipe></Recipe>
+          </PrivateRoute>
+        ),
         loader: () =>
           fetch(
             "https://palatable-world-client-site-ashiqur23.vercel.app/recipes/all"

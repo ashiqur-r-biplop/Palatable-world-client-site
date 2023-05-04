@@ -6,7 +6,7 @@ import avatar from "../assets/user.png";
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useContext(AuthContext);
-  console.log(user?.photoURL);
+  // console.log(user?.photoURL);
   const handleLogout = () => {
     logout();
   };

@@ -6,27 +6,29 @@ import gitHubImg from "../../assets/github.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, sendPasswordResetEmail } from "firebase/auth";
 
 const Login = () => {
-  const { login, signInGoogle, signInGithub } = useContext(AuthContext);
+  const { login, signInGoogle, signInGithub, auth } = useContext(AuthContext);
   const [toggleIcon, setToggleIcon] = useState(false);
   const [errorMassage, setErrorMassage] = useState("");
   const [successMassage, setSuccessMassage] = useState("");
+  const [email, setEmail] = useState("");
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    login(email, password)
+    const emailField = form.email.value;
+    setEmail(emailField);
+    const passwordField = form.password.value;
+    login(emailField, passwordField)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        // console.log(loggedUser);
         setSuccessMassage("login successful");
         setErrorMassage("");
         navigate(from, { replace: true });
@@ -50,12 +52,20 @@ const Login = () => {
   const handleGithubLogin = () => {
     const githubProvider = new GithubAuthProvider();
     signInGithub(githubProvider)
-    .then((result) => {
-      const loggedUser = result.user;
-      navigate(from, { replace: true });
-    }).catch((err) => {
-      console.log(err.message);
-    });
+      .then((result) => {
+        const loggedUser = result.user;
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {
+        // console.log(err.message);
+      });
+  };
+  const handleForgetPassword = () => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {})
+      .catch((err) => {
+        // console.log(err.message);
+      });
   };
   return (
     <div className="container mx-auto">
@@ -98,7 +108,10 @@ const Login = () => {
                 )}
               </span>
             </div>
-            <p className="mb-3 text-end w-full forget-password">
+            <p
+              onClick={handleForgetPassword}
+              className="mb-3 text-end w-full forget-password"
+            >
               Forget Password
             </p>
             <span className="text-green-500 m-0">{successMassage}</span>

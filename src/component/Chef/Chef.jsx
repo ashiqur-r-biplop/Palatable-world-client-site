@@ -41,11 +41,12 @@ const Chef = () => {
   };
   return (
     <div>
-      <div className="grid-layout mx-auto">
+      <div className="grid-layout mx-auto" >
         {sixChefData?.map((chef) => (
           <div
             key={chef.id}
             className="card lg:w-96 m-4 mx-auto bg-base-100 shadow-xl"
+            style={{maxWidth:"80vw"}}
           >
             <figure>
               <LazyLoadImage

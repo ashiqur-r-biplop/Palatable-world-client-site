@@ -8,7 +8,7 @@ import "./../../CustomStyle.css";
 const Testimonial = () => {
   return (
     <div className="grid-layout">
-      <div className="lg:w-96 mx-auto border bg-base-100 ">
+      <div className="lg:w-96 mx-auto border bg-base-100 " style={{maxWidth:"80vw"}}>
         <figure className="px-10 pt-10">
           <img
             src={img1}
@@ -32,7 +32,7 @@ const Testimonial = () => {
           </div>
         </div>
       </div>
-      <div className="lg:w-96 mx-auto border bg-base-100 ">
+      <div className="lg:w-96 mx-auto border bg-base-100 " style={{maxWidth:"80vw"}}>
         <figure className="px-10 pt-10">
           <img
             src={img3}
@@ -57,7 +57,7 @@ const Testimonial = () => {
           </div>
         </div>
       </div>
-      <div className="lg:w-96 mx-auto border bg-base-100 ">
+      <div className="lg:w-96 mx-auto border bg-base-100 " style={{maxWidth:"80vw"}}>
         <figure className="px-10 pt-10">
           <img
             src={img2}

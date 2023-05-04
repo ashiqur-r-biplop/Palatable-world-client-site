@@ -27,8 +27,8 @@ const SignleRecipe = ({ recipe }) => {
     });
   };
   return (
-    <div className="card lg:w-96 border mx-auto">
-      <div className="card-body items-start ">
+    <div className="card lg:w-96 border mx-auto" >
+      <div className="card-body items-start">
         <div className="flex justify-between items-start w-full">
           <h1 className="text-2xl  font-semibold">{recipe?.recipes_name}</h1>
 

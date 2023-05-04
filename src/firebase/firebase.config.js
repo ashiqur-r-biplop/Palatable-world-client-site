@@ -1,12 +1,12 @@
 import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyARNihEhprObs_zqGPzLj7fIha_Mnwz-W4",
-  authDomain: "palatable-world-client-site.firebaseapp.com",
-  projectId: "palatable-world-client-site",
-  storageBucket: "palatable-world-client-site.appspot.com",
-  messagingSenderId: "58478539605",
-  appId: "1:58478539605:web:01db8d47fe5bb3c3abb5dc"
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId:import.meta.env.VITE_MESSAGINGSENDERID,
+  appId:import.meta.env.VITE_APPID
 };
 
 // Initialize Firebase

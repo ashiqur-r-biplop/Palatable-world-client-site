@@ -87,15 +87,15 @@ const NavBar = () => {
                   borderRadius: "50%",
                   cursor: "pointer",
                 }}
-                className="md:ms-3"
+                className="md:ms-3 hidden lg:block"
                 src={user?.photoURL}
                 alt=""
               />
             ) : (
               <img
                 style={{ width: "50px", height: "px" }}
-                className="md:ms-3"
-                src={avatar}
+                className="md:ms-3 hidden lg:block"
+                src={ user && avatar}
                 alt=""
               />
             )}
@@ -189,13 +189,47 @@ const NavBar = () => {
                           Blog
                         </Link>
                       </li>
-                      <li>
-                        <Link to="/login">
-                          <button className="btn-primary  lg:flex">
-                            Login
+                      {user ? (
+                        <li>
+                          <button
+                            onClick={handleLogout}
+                            className="btn-primary  lg:flex"
+                          >
+                            logout
                           </button>
-                        </Link>
-                      </li>
+                        </li>
+                      ) : (
+                        <li>
+                          <Link to="/login">
+                            <button className="btn-primary  lg:flex">
+                              Login
+                            </button>
+                          </Link>
+                        </li>
+                      )}
+                      {user ? (
+                        <img
+                          title={`${
+                            user?.displayName ? user?.displayName : ""
+                          }`}
+                          style={{
+                            width: "50px",
+                            height: "px",
+                            borderRadius: "50%",
+                            cursor: "pointer",
+                          }}
+                          className="md:ms-3"
+                          src={user?.photoURL}
+                          alt=""
+                        />
+                      ) : (
+                        <img
+                          style={{ width: "50px", height: "px" }}
+                          className="md:ms-3"
+                          src={avatar}
+                          alt=""
+                        />
+                      )}
                     </ul>
                   </nav>
                 </div>

@@ -22,18 +22,25 @@ const Register = () => {
     const photoUrl = form.photoUrl.value;
     const email = form.email.value;
     const password = form.password.value;
-    signUp(email, password)
-      .then((result) => {
-        const loggedUser = result.user;
-        setErrorMassage("");
-        ProfileUpdate(name, photoUrl);
-        console.log(loggedUser);
-        navigate("/");
-        form.reset();
-      })
-      .catch((err) => {
-        setErrorMassage(err.message);
-      });
+    if (password < 6) {
+      setErrorMassage("Minimum six characters provide your password");
+      return;
+    } else if (!/^(?=.*[A-Za-z])/.test(password)) {
+      setErrorMassage("At least one letter");
+    } else {
+      signUp(email, password)
+        .then((result) => {
+          const loggedUser = result.user;
+          setErrorMassage("");
+          ProfileUpdate(name, photoUrl);
+          console.log(loggedUser);
+          navigate("/");
+          form.reset();
+        })
+        .catch((err) => {
+          setErrorMassage(err.message);
+        });
+    }
   };
   const handleEmail = (e) => {
     const emailHandle = e.target.value;
@@ -60,7 +67,7 @@ const Register = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        navigate("/")
+        navigate("/");
       })
       .catch((err) => {});
   };
@@ -69,7 +76,7 @@ const Register = () => {
     signInGithub(githubProvider);
     then((result) => {
       const loggedUser = result.user;
-      navigate("/")
+      navigate("/");
     }).catch((err) => {});
   };
   return (

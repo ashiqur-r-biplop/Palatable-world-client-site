@@ -48,14 +48,14 @@ const Home = () => {
               </button>
             </div>
           </div>
-          <div className="lg:w-3/5 items-end">
+          <div className="lg:w-3/5 ">
             <LazyLoadImage
               src={header}
               className="m-0 rounded my-3 lg:my-0"
               loading="lazy"
               effect="blur"
               alt="Chef"
-              style={{ width: "80%", marginLeft: "auto" }}
+              style={{ width: "80%", margin: "auto" }}
               placeholderSrc={header.blurhash}
             />
           </div>

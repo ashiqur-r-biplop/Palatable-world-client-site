@@ -5,6 +5,12 @@ import { useNavigation } from "react-router-dom";
 import Spinner from "../../Spinner/Spinner";
 const Blog = () => {
   const ref = React.createRef();
+  const options = {
+    orientation: "landscape",
+    unit: "px",
+    format: [window.innerWidth * 0.55, window.innerHeight],
+  };
+
   const navigation = useNavigation();
   if (navigation.state === "loading") {
     return <Spinner></Spinner>;
@@ -13,8 +19,13 @@ const Blog = () => {
     <div className="my-5 container mx-auto">
       <div className="m-3 lg:w-2/4 mx-auto">
         <div className="md:text-center">
-          <Pdf targetRef={ref} filename="code-example.pdf">
-            {({ toPdf }) => (
+          <Pdf targetRef={ref}
+            filename="blog.pdf"
+            options={options}
+            x={0}
+            y={0}
+            scale={1}>
+            {({ toPdf  }) => (
               <div>
                 <div className=" col-md-12 text-center mt-4">
                   <button className="btn-primary flex items-center justify-center  mx-auto" onClick={toPdf}>

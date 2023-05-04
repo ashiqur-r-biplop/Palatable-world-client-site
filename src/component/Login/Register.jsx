@@ -1,7 +1,7 @@
 import { faEye, faEyeSlash, faL } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import googleImg from "../../assets/google.png";
 import gitHubImg from "../../assets/github.png";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -18,6 +18,8 @@ const Register = () => {
     ProfileUpdate,
     setReload,
   } = useContext(AuthContext);
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/";
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -40,7 +42,7 @@ const Register = () => {
           .then(()=>{
             setReload(true)
           })
-          navigate("/");
+          navigate(from, { replace: true });
           form.reset();
         })
         .catch((err) => {
@@ -73,16 +75,16 @@ const Register = () => {
       .then((result) => {
         const loggedUser = result.user;
         // console.log(loggedUser);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((err) => {});
   };
   const handleGithubLogin = () => {
     const githubProvider = new GithubAuthProvider();
-    signInGithub(githubProvider);
-    then((result) => {
+    signInGithub(githubProvider)
+    .then((result) => {
       const loggedUser = result.user;
-      navigate("/");
+      navigate(from, { replace: true });
     }).catch((err) => {});
   };
   return (

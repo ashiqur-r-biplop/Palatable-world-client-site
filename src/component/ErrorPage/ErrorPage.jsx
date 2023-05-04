@@ -4,7 +4,7 @@ import './ErrorPage.css'
 import errorImage from './../../assets/error_img.png'
 
 const ErrorPage = () => {
-  const { error, status } = useRouteError()
+  const { error } = useRouteError()
   return (
     <section className='container mx-auto'>
       <div className='err-container'>

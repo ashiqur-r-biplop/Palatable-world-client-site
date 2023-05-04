@@ -92,9 +92,17 @@ const NavBar = () => {
                     src={user?.photoURL}
                     alt=""
                   />
-                  {
-                    Favorite.length > 0 && <p className="absolute -top-2 text-xxl bg-white px-2 font-semibold -right-2">{Favorite.length}</p>
-                  }
+                  <>
+                    {user?.photoURL && (
+                      <>
+                        {Favorite.length > 0 && (
+                          <p className="absolute hidden lg:block -top-2 text-xxl bg-white px-2 font-semibold -right-2 rounded-full">
+                            {Favorite.length}
+                          </p>
+                        )}
+                      </>
+                    )}
+                  </>
                 </>
               ) : (
                 <img

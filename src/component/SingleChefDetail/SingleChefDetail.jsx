@@ -15,8 +15,6 @@ const SingleChefDetail = () => {
   const chefRecipes = useLoaderData();
   const [imgLoad, setImgLoad] = useState(false);
 
-
-
   const id = useParams(null);
   useEffect(() => {
     fetch(
@@ -26,7 +24,6 @@ const SingleChefDetail = () => {
       .then((data) => setChefSingleData(data));
   }, []);
 
-
   useEffect(() => {
     const img = new Image();
     img.onload = () => {
@@ -35,21 +32,19 @@ const SingleChefDetail = () => {
     img.src = chefSingleData?.chefPhoto;
     setImgLoad(false);
   }, [chefSingleData?.chefPhoto]);
-  
+
   const navigation = useNavigation();
+
+  if (chefRecipes.length === 0) {
+    return <ErrorPage></ErrorPage>;
+  }
   if (navigation.state === "loading") {
     return <Spinner></Spinner>;
-  }
-  if (chefRecipes.length === 0) {
-    return <ErrorPage></ErrorPage>;
-  }
-  if (chefRecipes.length === 0) {
-    return <ErrorPage></ErrorPage>;
   }
   return (
     <div className="container mx-auto">
       <div className="my-5">
-        <div className="md:flex justify-between items-center">
+        <div className="md:flex flex-col-reverse md:flex-row  justify-between items-center">
           <div>
             <h1 className="font-bold text-5xl" style={{ color: "#910000" }}>
               {chefSingleData?.chefName}
@@ -69,12 +64,6 @@ const SingleChefDetail = () => {
               alt="Chef"
               placeholderSrc={chefSingleData?.chefPhoto.blurhash}
             />
-            {/* <img
-              className="m-3"
-              style={{ width: "100%" }}
-              src={chefSingleData?.chefPhoto}
-              alt=""
-            /> */}
           </div>
         </div>
         <div className="my-20">

@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="container mx-auto">
-        <h1 className="font-bold text-2xl text-center w-full text-black uppercase text-3xl">
+        <h1 className="font-bold text-2xl text-center w-full text-black uppercase lg:text-3xl">
           palatable world
         </h1>
 

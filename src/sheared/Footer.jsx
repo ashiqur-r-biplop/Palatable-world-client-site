@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="container mx-auto">
-        <h1 className="font-bold text-2xl text-center w-full text-black uppercase lg:text-3xl">
+        <h1 className="font-bold text-2xl text-center lg:w-full text-black uppercase lg:text-3xl">
           palatable world
         </h1>
 
@@ -20,7 +20,7 @@ const Footer = () => {
           <button className="py-4 uppercase font-semibold px-2 lg:px-20">Subscribe</button>
         </div>
 
-        <div className="md:flex justify-between m-3 w-full">
+        <div className="md:flex justify-between m-3 lg:w-full">
           <div>
             <h4 className="font-semibold">Quick Links</h4>
             <p className="text-gray-400">Home</p>

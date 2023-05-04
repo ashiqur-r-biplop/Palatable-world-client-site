@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { AiFillHeart } from "react-icons/ai";
 import "./SingleChefDetail.css";
-import DataNotFount from "../DataNotFount/DataNotFount.jsx";
 import Swal from "sweetalert2";
 import { Rating, Star } from "@smastrom/react-rating";
+import ErrorPage from "../ErrorPage/ErrorPage";
 const SingleChefDetail = () => {
   const [chefSingleData, setChefSingleData] = useState(null);
   const [dataId, setDataId] = useState([]);
@@ -36,7 +36,7 @@ const SingleChefDetail = () => {
     activeFillColor: "#910000",
   };
   if (chefRecipes.length === 0) {
-    return <DataNotFount></DataNotFount>;
+    return <ErrorPage></ErrorPage>;
   }
 
   return (

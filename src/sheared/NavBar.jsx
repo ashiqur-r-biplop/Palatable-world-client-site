@@ -5,7 +5,7 @@ import avatar from "../assets/user.png";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, Favorite } = useContext(AuthContext);
   // console.log(user?.photoURL);
   const handleLogout = () => {
     logout();
@@ -24,7 +24,6 @@ const NavBar = () => {
               <h1 className="logo lg:uppercase">Palatable world</h1>
             </span>
           </Link>
-
           <div className="flex items-center ">
             <ul className="items-center hidden space-x-8 lg:flex">
               <li>
@@ -78,27 +77,34 @@ const NavBar = () => {
                 </button>
               </Link>
             )}
-            {user ? (
-              <img
-                title={`${user?.displayName ? user?.displayName : ""}`}
-                style={{
-                  width: "50px",
-                  height: "px",
-                  borderRadius: "50%",
-                  cursor: "pointer",
-                }}
-                className="md:ms-3 hidden lg:block"
-                src={user?.photoURL}
-                alt=""
-              />
-            ) : (
-              <img
-                style={{ width: "50px", height: "px" }}
-                className="md:ms-3 hidden lg:block"
-                src={ user && avatar}
-                alt=""
-              />
-            )}
+            <div className="relative">
+              {user ? (
+                <>
+                  <img
+                    title={`${user?.displayName ? user?.displayName : ""}`}
+                    style={{
+                      width: "50px",
+                      height: "px",
+                      borderRadius: "50%",
+                      cursor: "pointer",
+                    }}
+                    className="md:ms-3 hidden lg:block"
+                    src={user?.photoURL}
+                    alt=""
+                  />
+                  {
+                    Favorite.length > 0 && <p className="absolute -top-2 text-xxl bg-white px-2 font-semibold -right-2">{Favorite.length}</p>
+                  }
+                </>
+              ) : (
+                <img
+                  style={{ width: "50px", height: "px" }}
+                  className="md:ms-3 hidden lg:block"
+                  src={user && avatar}
+                  alt=""
+                />
+              )}
+            </div>
           </div>
 
           <div className="lg:hidden">

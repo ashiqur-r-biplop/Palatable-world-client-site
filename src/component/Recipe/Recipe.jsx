@@ -1,13 +1,19 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import headerImg from "./../../assets/header3.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import "./Recipe.css";
+import Spinner from "../../Spinner/Spinner";
 
 const Recipe = () => {
   const recipes = useLoaderData();
   // console.log(recipes);
+  const navigation = useNavigation();
+  console.log(navigation);
+  if (navigation.state == "loader") {
+    return <Spinner></Spinner>;
+  }
   return (
     <div>
       <div

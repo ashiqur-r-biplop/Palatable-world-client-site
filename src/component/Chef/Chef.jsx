@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Chef = () => {
   const [sixChefData, setSixChefData] = useState([]);
   const [fullChefData, setFullChefData] = useState([]);
   const [lessChef, setLessChef] = useState([]);
+  const [imgLoad, setImgLoad] = useState(false);
+
   const navigate = useNavigate();
   useEffect(() => {
     fetch("https://palatable-world-client-site-ashiqur23.vercel.app/chef/all")
@@ -15,6 +19,16 @@ const Chef = () => {
         setFullChefData(data);
       });
   }, []);
+
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => {
+      setImgLoad(true);
+    };
+    img.src = fullChefData?.chefPhoto;
+    setImgLoad(false);
+  }, [fullChefData?.chefPhoto]);
+
   const handleSeeAll = () => {
     setSixChefData(fullChefData);
   };
@@ -25,7 +39,6 @@ const Chef = () => {
   const handleVewRecipe = (id) => {
     navigate(`/recipe/${id}`);
   };
-
   return (
     <div>
       <div className="grid-layout mx-auto">
@@ -35,7 +48,14 @@ const Chef = () => {
             className="card lg:w-96 m-4 mx-auto bg-base-100 shadow-xl"
           >
             <figure>
-              <img src={chef?.chefPhoto} alt="Shoes" />
+              <LazyLoadImage
+                src={chef?.chefPhoto}
+                className="card-img-top"
+                loading="lazy"
+                effect="blur"
+                alt="Chef"
+                placeholderSrc={chef?.chefPhoto.blurhash}
+              />
             </figure>
             <div className="card-body relative">
               <h2
@@ -75,7 +95,7 @@ const Chef = () => {
         ))}
       </div>
       <div className="text-center">
-        {sixChefData.length > 6 ? (
+        {sixChefData?.length > 6 ? (
           <button onClick={handleShowLess} className="btn-primary">
             show Less
           </button>

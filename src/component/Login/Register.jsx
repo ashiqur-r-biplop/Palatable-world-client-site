@@ -11,9 +11,13 @@ const Register = () => {
   const [toggleIcon, setToggleIcon] = useState(false);
   const [errorMassage, setErrorMassage] = useState("");
   const navigate = useNavigate();
-  const { signUp, signInGoogle, signInGithub, ProfileUpdate } = useContext(
-    AuthContext
-  );
+  const {
+    signUp,
+    signInGoogle,
+    signInGithub,
+    ProfileUpdate,
+    setReload,
+  } = useContext(AuthContext);
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -32,8 +36,10 @@ const Register = () => {
         .then((result) => {
           const loggedUser = result.user;
           setErrorMassage("");
-          ProfileUpdate(name, photoUrl);
-          // console.log(loggedUser);
+          ProfileUpdate(name, photoUrl)
+          .then(()=>{
+            setReload(true)
+          })
           navigate("/");
           form.reset();
         })

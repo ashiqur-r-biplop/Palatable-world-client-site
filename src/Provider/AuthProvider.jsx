@@ -13,12 +13,12 @@ import {
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
-
-
 const AuthProvider = ({ children }) => {
   const auth = getAuth(app);
+  const [Favorite, setFavorite] = useState([]);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [reload, setReload] = useState(false);
   const signUp = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -46,13 +46,13 @@ const AuthProvider = ({ children }) => {
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [reload]);
   const ProfileUpdate = (name, PhotoUrl) => {
-    updateProfile(auth.currentUser, {
+    setLoading(true);
+    return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: PhotoUrl,
     });
-    setLoading(true);
   };
   const authInfo = {
     user,
@@ -63,7 +63,10 @@ const AuthProvider = ({ children }) => {
     logout,
     loading,
     ProfileUpdate,
-    auth
+    auth,
+    setFavorite,
+    Favorite,
+    setReload
   };
 
   return (

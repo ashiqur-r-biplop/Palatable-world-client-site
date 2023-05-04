@@ -1,14 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
-import { AiFillHeart } from "react-icons/ai";
+import React, { createContext, useEffect, useState } from "react";
+import { useLoaderData, useNavigation, useParams } from "react-router-dom";
 import "./SingleChefDetail.css";
-import Swal from "sweetalert2";
-import { Rating, Star } from "@smastrom/react-rating";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import Spinner from "../../Spinner/Spinner";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import SignleRecipe from "../signleRecipe/SignleRecipe";
+
+export const Favorite = createContext(null);
+
 const SingleChefDetail = () => {
   const [chefSingleData, setChefSingleData] = useState(null);
-  const [dataId, setDataId] = useState([]);
+
   const chefRecipes = useLoaderData();
+  const [imgLoad, setImgLoad] = useState(false);
+
+
 
   const id = useParams(null);
   useEffect(() => {
@@ -19,26 +26,26 @@ const SingleChefDetail = () => {
       .then((data) => setChefSingleData(data));
   }, []);
 
-  const handleBookMark = (id) => {
-    setDataId([...dataId, id]);
-    Swal.fire({
-      title: "Favorite Successful",
-      showClass: {
-        popup: "animate__animated animate__fadeInDown",
-      },
-      hideClass: {
-        popup: "animate__animated animate__fadeOutUp",
-      },
-    });
-  };
-  const myStyles = {
-    itemShapes: Star,
-    activeFillColor: "#910000",
-  };
+
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => {
+      setImgLoad(true);
+    };
+    img.src = chefSingleData?.chefPhoto;
+    setImgLoad(false);
+  }, [chefSingleData?.chefPhoto]);
+  
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <Spinner></Spinner>;
+  }
   if (chefRecipes.length === 0) {
     return <ErrorPage></ErrorPage>;
   }
-
+  if (chefRecipes.length === 0) {
+    return <ErrorPage></ErrorPage>;
+  }
   return (
     <div className="container mx-auto">
       <div className="my-5">
@@ -54,12 +61,20 @@ const SingleChefDetail = () => {
             </div>
           </div>
           <div className="md:w-1/2">
-            <img
+            <LazyLoadImage
+              src={chefSingleData?.chefPhoto}
+              className="card-img-top"
+              loading="lazy"
+              effect="blur"
+              alt="Chef"
+              placeholderSrc={chefSingleData?.chefPhoto.blurhash}
+            />
+            {/* <img
               className="m-3"
               style={{ width: "100%" }}
               src={chefSingleData?.chefPhoto}
               alt=""
-            />
+            /> */}
           </div>
         </div>
         <div className="my-20">
@@ -68,60 +83,7 @@ const SingleChefDetail = () => {
 
             <div className="grid-layout">
               {chefRecipes?.map((recipe) => (
-                <div key={recipe.id}>
-                  <div className="card w-96 border">
-                    <div className="card-body items-start ">
-                      <div className="flex justify-between items-start w-full">
-                        <h1 className="text-2xl  font-semibold">
-                          {recipe?.recipes_name}
-                        </h1>
-
-                        <button
-                          className={`btn btn-black favoriteBtn ${
-                            dataId.includes(recipe.id)
-                              ? "bg-gray-500"
-                              : "bg-[#910000]"
-                          }`}
-                          onClick={() => handleBookMark(recipe.id)}
-                          disabled={dataId.includes(recipe.id)}
-                        >
-                          <AiFillHeart className="bookmark"></AiFillHeart>
-                        </button>
-                      </div>
-                      <p>
-                        {" "}
-                        <span className="text-xl  font-semibold">
-                          Recipes Instructions :
-                        </span>
-                        <span className="text-xll ">
-                          {recipe?.recipes_instructions?.slice(0, 100)}.ETC
-                        </span>
-                      </p>
-                      <>
-                        <span className="text-xl font-semibold">
-                          Recipes Ingredients
-                        </span>
-                        {recipe?.recipes_ingredients?.map((r, i) => (
-                          <li key={i} className="text-xll ">
-                            {r}
-                          </li>
-                        ))}
-                      </>
-                      <p className="">
-                        <span className="text-xl font-semibold">Retting:</span>{" "}
-                        <span className="text-xll">
-                          {recipe?.rating}
-                          <Rating
-                            style={{ maxWidth: 250 }}
-                            value={recipe?.rating}
-                            readOnly
-                            itemStyles={myStyles}
-                          />
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <SignleRecipe recipe={recipe} key={recipe?.id}></SignleRecipe>
               ))}
             </div>
           </div>

@@ -7,9 +7,6 @@ import { useLoaderData } from "react-router-dom";
 const CardRecipe = () => {
   const chefRecipes = useLoaderData();
   const [controlDisable, setControlDisable] = useState(false);
-//   if(controlDisable){
-//     return (alert("Favorite successful"))
-//   }
   return (
     <div className="grid-layout">
       {chefRecipes?.map((recipe) => (

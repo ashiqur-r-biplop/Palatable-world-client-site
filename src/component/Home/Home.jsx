@@ -5,13 +5,15 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Chef from "../Chef/Chef";
 import Testimonial from "../Testimonial/Testimonial";
 import Comment from "../Comment/Comment";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Home = () => {
   return (
     <div className="py-10">
       <div className="container mx-auto">
         <div className="lg:flex flex flex-col-reverse lg:flex-row justify-between items-center">
-          <div className="lg:w-1/2">
+          <div className="lg:w-1/2" >
             <h1 className="logo lg:text-6xl lg:leading-[1.3]" style={{ fontFamily: "'Playfair Display', serif"}}>Its Not Just Food, Its An Experience</h1>
             <div className="m-2">
               <div className="my-3">
@@ -29,8 +31,16 @@ const Home = () => {
               </button>
             </div>
           </div>
-          <div className="lg:w-3/5 flex justify-end items-end">
-            <img style={{ width: "80%" }} className="m-0 mx-auto lg:mx-5 rounded my-3 lg:my-0" src={header} alt="" />
+          <div className="lg:w-3/5 items-end">
+          <LazyLoadImage
+                src={header}
+                className="m-0 rounded my-3 lg:my-0"
+                loading="lazy"
+                effect="blur"
+                alt="Chef"
+                style={{ width: "80%" , marginLeft:"auto" }}
+                placeholderSrc={header.blurhash}
+              />
           </div>
         </div>
         

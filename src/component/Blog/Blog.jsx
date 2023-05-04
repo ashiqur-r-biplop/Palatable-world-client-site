@@ -17,7 +17,7 @@ const Blog = () => {
   }
   return (
     <div className="my-5 container mx-auto">
-      <div className="m-3 lg:w-2/4 mx-auto">
+      <div className="m-3 lg:w-2/4 mx-auto" style={{maxWidth:"80vw"}}>
         <div className="md:text-center">
           <Pdf targetRef={ref}
             filename="blog.pdf"

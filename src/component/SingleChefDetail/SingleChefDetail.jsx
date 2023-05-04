@@ -44,7 +44,7 @@ const SingleChefDetail = () => {
   return (
     <div className="container mx-auto">
       <div className="my-5">
-        <div className="md:flex flex-col-reverse md:flex-row  justify-between items-center">
+        <div className="md:flex flex-col-reverse md:flex-row  justify-between items-center mx-auto" style={{maxWidth:"80vw"}}>
           <div>
             <h1 className="font-bold text-5xl" style={{ color: "#910000" }}>
               {chefSingleData?.chefName}
@@ -70,7 +70,7 @@ const SingleChefDetail = () => {
           <div className="py-20">
             <h1 className="section-title text-center py-20">Our Recipes</h1>
 
-            <div className="grid-layout">
+            <div className="grid-layout mx-auto" style={{maxWidth:"80vw"}}>
               {chefRecipes?.map((recipe) => (
                 <SignleRecipe recipe={recipe} key={recipe?.id}></SignleRecipe>
               ))}

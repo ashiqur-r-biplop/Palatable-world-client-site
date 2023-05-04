@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <div className="py-10">
       <div className="container mx-auto">
-        <div className="lg:flex flex flex-col-reverse lg:flex-row justify-between items-center">
+        <div className="lg:flex flex flex-col-reverse lg:flex-row justify-between items-center" >
           <div className="lg:w-1/2">
             <h1
               className="logo lg:text-6xl lg:leading-[1.3]"

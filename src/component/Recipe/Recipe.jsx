@@ -30,10 +30,10 @@ const Recipe = () => {
         </h1>
       </div>
       <div className="container mx-auto">
-        <div className="grid-layout py-10">
+        <div className="grid-layout py-10" >
           {recipes?.map((recipe) => (
             <div key={recipe.id}>
-              <div className="card w-96 border mx-auto">
+              <div className="card w-96 border mx-auto" style={{maxWidth:"80vw"}}>
                 <div className="card-body items-start ">
                   <div className="flex justify-between items-start w-full">
                     <h1 className="text-2xl  font-semibold">

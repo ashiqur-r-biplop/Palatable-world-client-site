@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider, sendPasswordResetEmail } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { login, signInGoogle, signInGithub, auth } = useContext(AuthContext);
@@ -24,17 +25,31 @@ const Login = () => {
     const form = e.target;
     const emailField = form.email.value;
     setEmail(emailField);
+    setErrorMassage("")
     const passwordField = form.password.value;
     login(emailField, passwordField)
       .then((result) => {
         const loggedUser = result.user;
         // console.log(loggedUser);
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: 'Your Log In Successful',
+          showConfirmButton: false,
+          timer: 1500
+        })
         setSuccessMassage("login successful");
         setErrorMassage("");
         navigate(from, { replace: true });
       })
       .catch((err) => {
         setSuccessMassage("");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          title: `${err.message}`,
+          footer: '<a href="">Why do I have this issue?</a>'
+        })
         setErrorMassage(err.message);
       });
   };
@@ -46,8 +61,17 @@ const Login = () => {
         const loggedUser = result.user;
         // console.log(loggedUser);
         navigate(from, { replace: true });
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: 'Your Google Login Successful',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
-      .catch((err) => {});
+      .catch((err) => {
+        
+      });
   };
   const handleGithubLogin = () => {
     const githubProvider = new GithubAuthProvider();
@@ -55,6 +79,13 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         navigate(from, { replace: true });
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: 'Your Github Login Successful',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
       .catch((err) => {
         // console.log(err.message);

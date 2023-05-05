@@ -6,6 +6,7 @@ import googleImg from "../../assets/google.png";
 import gitHubImg from "../../assets/github.png";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [toggleIcon, setToggleIcon] = useState(false);
@@ -44,8 +45,22 @@ const Register = () => {
           })
           navigate(from, { replace: true });
           form.reset();
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Your Register Successful',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          
         })
         .catch((err) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            title: `${err.message}`,
+            footer: '<a href="">Why do I have this issue?</a>'
+          })
           setErrorMassage(err.message);
         });
     }
@@ -55,6 +70,9 @@ const Register = () => {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailHandle)) {
       setErrorMassage("Email are not valid");
       return;
+    }
+    else{
+      setErrorMassage("")
     }
   };
   const handlePassword = (e) => {
@@ -76,6 +94,13 @@ const Register = () => {
         const loggedUser = result.user;
         // console.log(loggedUser);
         navigate(from, { replace: true });
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: 'Your Google Register is Successful',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
       .catch((err) => {});
   };
@@ -85,6 +110,13 @@ const Register = () => {
     .then((result) => {
       const loggedUser = result.user;
       navigate(from, { replace: true });
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'Your Github Register is Successful',
+        showConfirmButton: false,
+        timer: 1500
+      })
     }).catch((err) => {});
   };
   return (
